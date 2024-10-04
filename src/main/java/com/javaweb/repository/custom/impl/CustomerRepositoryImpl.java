@@ -56,10 +56,9 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
     public List<CustomerEntity> findCustomerByRequest(CustomerDTO customerDTO) {
         StringBuilder sql = new StringBuilder("SELECT c.* FROM customer c ");
         joinTable(customerDTO, sql);
-        StringBuilder where = new StringBuilder(" WHERE 1 = 1 ");
+        StringBuilder where = new StringBuilder(" WHERE 1 = 1 AND c.is_active = 1 ");
         queryNomal(customerDTO, where);
         querySpecial(customerDTO, where);
-        where.append(" GROUP BY c.id ");
         sql.append(where);
 
         Query query = entityManager.createNativeQuery(sql.toString(), CustomerEntity.class);

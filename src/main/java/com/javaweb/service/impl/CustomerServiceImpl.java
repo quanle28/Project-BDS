@@ -70,7 +70,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     public void deleteCustomer(List<Long> ids) {
-        customerRepository.deleteByIdIn(ids);
+        for (Long id : ids) {
+            CustomerEntity customerEntity = customerRepository.findById(id).get();
+            customerEntity.setIsactive(0);
+            customerRepository.save(customerEntity);
+        }
     }
 
     @Override
@@ -94,6 +98,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void addContact(EditCustomerDTO editCustomerDTO) {
         CustomerEntity customer = modelMapper.map(editCustomerDTO, CustomerEntity.class);
+        customer.setIsactive(1);
         customerRepository.save(customer);
     }
 

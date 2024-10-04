@@ -212,6 +212,7 @@
     document.addEventListener('DOMContentLoaded', function (){
         document.getElementById('btnAddContact').addEventListener('click', function (){
             var data = {};
+            data['status'] = 'CHUA_XU_LY';
             var formData = new FormData(document.getElementById('listForm'));
 
             formData.forEach(function(value, key) {
@@ -237,7 +238,8 @@
             })
             .then(response => {
                 if (response.ok) {
-                    confirm("LƯU KHÁCH HÀNG THÀNH CÔNG!");
+                    confirm("Cảm ơn bạn đã cung cấp thông tin cho chúng tôi!\n" +
+                     "Chúng tôi sẽ sớm liên hệ lại cho bạn.");
                     window.location.href = "/lien-he";
                 } else {
                     throw new Error('Error');

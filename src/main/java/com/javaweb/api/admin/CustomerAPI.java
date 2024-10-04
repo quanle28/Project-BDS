@@ -46,13 +46,11 @@ public class CustomerAPI {
     @PostMapping("/transaction")
     public void addOrUpdateTransaction(@RequestBody TransactionDTO transactionDTO) {
         transactionService.addOrUpdateTransaction(transactionDTO);
-        System.out.println("OK");
     }
 
     @PostMapping("/contact")
     public void addContact(@RequestBody EditCustomerDTO editCustomerDTO) {
         customerService.addContact(editCustomerDTO);
-        System.out.println("OK");
     }
 
 
